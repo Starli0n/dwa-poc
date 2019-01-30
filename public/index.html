@@ -6,6 +6,25 @@
   </head>
 
   <body>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <p>This is a static HTML document</p>
+    <div>
+      <div>A: <input type="text" id="numberA"></div>
+      <div>B: <input type="text" id="numberB"></div>
+      <div><button id="iResult" onclick="sum()">Result</button></div>
+      <div>Sum: <input type="text" id="sumAB"></div>
+    <div>
+
+    <script type="text/javascript">
+      function sum()
+      {
+        numberA = parseInt(document.getElementById("numberA").value);
+        numberB = parseInt(document.getElementById("numberB").value);
+        result = numberA + numberB;
+        document.getElementById("sumAB").value = result;
+      }
+    </script>
   </body>
 </html>
