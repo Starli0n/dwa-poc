@@ -22,7 +22,7 @@
         let numberA = document.getElementById("numberA").value;
         let numberB = document.getElementById("numberB").value;
 
-        axios.get('/api/sum/' + numberA + '/' + numberB)
+        axios.get('http://localhost:3000/api/sum/' + numberA + '/' + numberB)
           .then(function (response) {
             // handle success
             console.log(response);

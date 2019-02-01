@@ -16,3 +16,16 @@ services:
       - '${HTTP_PORT}:3000'
     command: [npm, start]
     restart: always
+
+  desktop:
+    container_name: ${DESKTOP_CONTAINER}
+    image: node:${TAG}
+    hostname: ${NODE_HOSTNAME}
+    user: 'node'
+    environment:
+      - NODE_ENV='production'
+    working_dir: /home/node/app/desktop
+    volumes:
+      - ./:/home/node/app
+    command: [npm, start]
+    restart: always

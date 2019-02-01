@@ -36,7 +36,7 @@ Create a `.npmrc` file
 analytics=false
 proxy=http://user:pass@proxy.com:port
 https-proxy=http://user:pass@proxy.com:port
-
+strict-ssl=false
 ```
 
 Update `docker-compose.yml`

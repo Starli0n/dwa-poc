@@ -19,14 +19,20 @@ initialize: init
 .PHONY: init
 init: # Install npm dependencies
 	docker-compose run --rm --name npm-install ${WEB_CONTAINER} npm install
+	docker-compose run --rm --name npm-install ${DESKTOP_CONTAINER} npm install
 
-.PHONY: init-shell
-init-shell: # Open a shell on a fresh container
+.PHONY: init-shell-web
+init-shell-web: # Open a shell on a fresh container
 	docker-compose run --rm --name node-shell ${WEB_CONTAINER} /bin/bash
+
+.PHONY: init-shell-desktop
+init-shell-desktop: # Open a shell on a fresh container
+	docker-compose run --rm --name node-shell ${DESKTOP_CONTAINER} /bin/bash
 
 .PHONY: erase
 erase:
-	rm -rf node_modules package-lock.json
+	rm -rf web/node_modules web/package-lock.json
+	rm -rf desktop/node_modules desktop/package-lock.json
 
 .PHONY: pull
 pull: # Pull the docker image
