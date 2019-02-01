@@ -8,7 +8,7 @@ const PORT = 3000;
 const HOST = '0.0.0.0';
 
 // Public
-app.use(express.static('public'));
+app.use(express.static('../public'));
 
 // Api
 app.get('/api', (req, res) => {

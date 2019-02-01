@@ -1,11 +1,11 @@
 {
-    "name": "dwa-poc",
+    "name": "wa-poc",
     "version": "1.0.0",
     "description": "Desktop App / Web App Proof Of Concept with Electron and Node.js on Docker",
     "author": "Starli0n <Starli0n@users.noreply.github.com>",
-    "main": "server.js",
+    "main": "main.js",
     "scripts": {
-        "start": "node server.js"
+        "start": "node main.js"
     },
     "dependencies": {
         "express": "^4.16.4"

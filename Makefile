@@ -2,14 +2,12 @@
 export $(shell sed 's/=.*//' .env)
 
 export NODE_HTTP_URL=http://${NODE_HOSTNAME}:${HTTP_PORT}
-export NODE_EXTERNAL_URL=${NODE_HTTP_URL}
 
 .PHONY: env_var
 env_var: # Print environnement variables
 	@cat .env
 	@echo
 	@echo NODE_HTTP_URL=${NODE_HTTP_URL}
-	@echo NODE_EXTERNAL_URL=${NODE_EXTERNAL_URL}
 
 .PHONY: env
 env: # Create .env and tweak it before initialize
@@ -20,11 +18,11 @@ initialize: init
 
 .PHONY: init
 init: # Install npm dependencies
-	docker-compose run --rm --name npm-install ${NODE_CONTAINER} npm install
+	docker-compose run --rm --name npm-install ${WEB_CONTAINER} npm install
 
 .PHONY: init-shell
 init-shell: # Open a shell on a fresh container
-	docker-compose run --rm --name node-shell ${NODE_CONTAINER} /bin/bash
+	docker-compose run --rm --name node-shell ${WEB_CONTAINER} /bin/bash
 
 .PHONY: erase
 erase:
@@ -74,10 +72,14 @@ hard-reset: delete mount
 logs:
 	docker-compose logs -f
 
-.PHONY: shell
-shell: # Open a shell on a started container
-	docker exec -it ${NODE_CONTAINER} /bin/bash
+.PHONY: shell-web
+shell-web: # Open a shell on a started container
+	docker exec -it ${WEB_CONTAINER} /bin/bash
+
+.PHONY: shell-desktop
+shell-desktop: # Open a shell on a started container
+	docker exec -it ${DESKTOP_CONTAINER} /bin/bash
 
 .PHONY: url
 url:
-	@echo ${NODE_EXTERNAL_URL}
+	@echo ${NODE_HTTP_URL}

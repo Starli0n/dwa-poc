@@ -2,14 +2,14 @@ version: '2.1'
 
 services:
 
-  node:
-    container_name: ${NODE_CONTAINER}
+  web:
+    container_name: ${WEB_CONTAINER}
     image: node:${TAG}
     hostname: ${NODE_HOSTNAME}
     user: 'node'
     environment:
       - NODE_ENV='production'
-    working_dir: /home/node/app
+    working_dir: /home/node/app/web
     volumes:
       - ./:/home/node/app
     ports:
