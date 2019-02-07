@@ -9,20 +9,25 @@
 
     <p>This is a static HTML document</p>
     <div>
-      <div>A: <input type="text" id="numberA"></div>
-      <div>B: <input type="text" id="numberB"></div>
+      <div>A: <input type="text" id="numberA" value="16"></div>
+      <div>B: <input type="text" id="numberB" value="8"></div>
       <div><button id="iResult" onclick="sum()">Result</button></div>
       <div>Sum: <input type="text" id="sumAB"></div>
     <div>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
+
+      let serverURL = '';
+      if (window.serverURL)
+        serverURL = window.serverURL;
+
       function sum()
       {
         let numberA = document.getElementById("numberA").value;
         let numberB = document.getElementById("numberB").value;
 
-        axios.get('http://localhost:3000/api/sum/' + numberA + '/' + numberB)
+        axios.get(serverURL + '/api/sum/' + numberA + '/' + numberB)
           .then(function (response) {
             // handle success
             console.log(response);

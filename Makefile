@@ -86,6 +86,14 @@ shell-web: # Open a shell on a started container
 shell-desktop: # Open a shell on a started container
 	docker exec -it ${DESKTOP_CONTAINER} /bin/bash
 
+.PHONY: web
+web:
+	cd web && npm start
+
+.PHONY: desktop
+desktop:
+	cd desktop && npm start
+
 .PHONY: url
 url:
 	@echo ${NODE_HTTP_URL}

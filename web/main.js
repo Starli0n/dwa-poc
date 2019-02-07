@@ -1,4 +1,4 @@
-'use strict';
+console.log('Loading web...');
 
 const express = require('express');
 const app = express();
