@@ -88,11 +88,11 @@ shell-desktop: # Open a shell on a started container
 
 .PHONY: web
 web:
-	cd web && npm start
+	cd server/web && npm start
 
 .PHONY: desktop
 desktop:
-	cd desktop && npm start
+	cd server/desktop && npm start
 
 .PHONY: url
 url:
