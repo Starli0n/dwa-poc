@@ -24,3 +24,5 @@ app.get('/api/sum/:numberA/:numberB', function (req, res) {
 
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
+
+const database = require('./database')

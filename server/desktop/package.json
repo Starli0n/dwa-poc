@@ -5,12 +5,15 @@
     "author": "Starli0n <Starli0n@users.noreply.github.com>",
     "main": "main.js",
     "scripts": {
+        "postinstall": "install-app-deps",
         "start": "electron ."
     },
     "dependencies": {
-        "express": "^4.16.4"
+        "express": "^4.16.4",
+        "sqlite3": "^4.0.6"
     },
     "devDependencies": {
-        "electron": "^4.0.3"
+        "electron": "^4.0.3",
+        "electron-builder": "^20.38.5"
     }
 }
