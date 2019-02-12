@@ -2,12 +2,14 @@
 export $(shell sed 's/=.*//' .env)
 
 export NODE_HTTP_URL=http://${NODE_HOSTNAME}:${HTTP_PORT}
+export ADMINER_HTTP_URL=http://${NODE_HOSTNAME}:${ADMINER_HTTP_PORT}
 
 .PHONY: env_var
 env_var: # Print environnement variables
 	@cat .env
 	@echo
 	@echo NODE_HTTP_URL=${NODE_HTTP_URL}
+	@echo ADMINER_HTTP_URL=${ADMINER_HTTP_URL}
 
 .PHONY: env
 env: # Create .env and tweak it before initialize
@@ -36,7 +38,9 @@ erase:
 
 .PHONY: pull
 pull: # Pull the docker image
-	docker pull node:${TAG}
+	docker pull node:${NODE_TAG}
+	docker pull mysql:${MYSQL_TAG}
+	docker pull adminer:${ADMINER_TAG}
 
 .PHONY: config
 config: # Show docker-compose configuration
@@ -94,6 +98,15 @@ web:
 desktop:
 	cd server/desktop && npm start
 
+.PHONY: db-up
+db-up: # Start containers and services
+	docker-compose -f docker-compose-db.yml up -d
+
+.PHONY: db-down
+db-down: # Stop containers and services
+	docker-compose -f docker-compose-db.yml down
+
 .PHONY: url
 url:
-	@echo ${NODE_HTTP_URL}
+	@echo App: ${NODE_HTTP_URL}
+	@echo Adm: ${ADMINER_HTTP_URL}

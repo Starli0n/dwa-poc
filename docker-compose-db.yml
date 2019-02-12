@@ -1,0 +1,17 @@
+version: '2.1'
+
+services:
+
+  db:
+    container_name: ${DB_CONTAINER}
+    image: mysql:${MYSQL_TAG}
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+
+  adminer:
+    image: adminer:${ADMINER_TAG}
+    restart: always
+    ports:
+      - ${ADMINER_HTTP_PORT}:8080
