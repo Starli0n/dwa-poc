@@ -2,12 +2,19 @@ console.log('Loading database...');
 
 const {dbSqlite} = require('../common/config');
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database(dbSqlite);
+const db = require('../common/database');
+var connection = new sqlite3.Database(dbSqlite);
 
-db.serialize(function() {
-  db.each("SELECT PRO_id, PRO_name FROM PA_Project", function(err, row) {
-    console.log(row.PRO_id + ": " + row.PRO_name);
+connection.connect = function () {};
+
+connection.query =  function (sqlRequest, callback) {
+  connection.serialize(function() {
+    connection.each(sqlRequest, callback);
   });
-});
+};
 
-db.close();
+connection.end = function () {
+  connection.close();
+};
+
+db.test(connection);

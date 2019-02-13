@@ -1,6 +1,7 @@
 console.log('Loading database...');
 
 const {dbHost, dbPort, dbUsr, dbPwd, dbName} = require('../common/config');
+const db = require('../common/database');
 
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
@@ -11,11 +12,4 @@ var connection = mysql.createConnection({
   database : dbName
 });
 
-connection.connect();
-
-connection.query('SELECT PRO_id, PRO_name FROM PA_Project', function (error, results, fields) {
-  if (error) throw error;
-  console.log(results[0].PRO_id + ": " + results[0].PRO_name);
-});
-
-connection.end();
+db.test(connection);
