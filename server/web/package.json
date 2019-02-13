@@ -5,10 +5,13 @@
     "author": "Starli0n <Starli0n@users.noreply.github.com>",
     "main": "main.js",
     "scripts": {
-        "start": "node main.js"
+        "start": "node main.js",
+        "start-local": "node -r dotenv/config main.js"
     },
     "dependencies": {
-        "express": "^4.16.4",
         "mysql": "^2.16.0"
+    },
+    "devDependencies": {
+        "dotenv": "^6.2.0"
     }
 }

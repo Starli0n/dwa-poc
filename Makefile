@@ -14,12 +14,15 @@ env_var: # Print environnement variables
 .PHONY: env
 env: # Create .env and tweak it before initialize
 	cp .env.default .env
+	cp server/web/.env.default server/web/.env
+	cp server/desktop/.env.default server/desktop/.env
 
 .PHONY: install
 install:
 	mkdir -p client/{common,desktop,web}
 	mkdir -p server/{common,desktop,web}
 	mkdir -p database
+	cd server/common && npm install
 	cd server/web && npm install
 	cd server/desktop && npm install
 
@@ -41,8 +44,9 @@ init-shell-desktop: # Open a shell on a fresh container
 
 .PHONY: erase
 erase:
+	rm -rf server/common/node_modules
 	rm -rf server/web/node_modules
-	rm -rf server/node_modules
+	rm -rf server/desktop/node_modules
 	rm -rf database
 
 .PHONY: pull
@@ -101,11 +105,11 @@ shell-desktop: # Open a shell on a started container
 
 .PHONY: web
 web:
-	cd server/web && npm start
+	cd server/web && npm run start-local
 
 .PHONY: desktop
 desktop:
-	cd server/desktop && npm start
+	cd server/desktop && npm run start-local
 
 .PHONY: db-up
 db-up: # Start containers and services

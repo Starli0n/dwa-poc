@@ -1,9 +1,12 @@
 console.log('Loading desktop...');
 
 // Modules to control application life and create native browser window
+const {devTool, appHost, appPort} = require('../common/config');
 const {app, BrowserWindow} = require('electron')
-const web = require('../web/main')
+const api = require('../common/api');
 const path = require('path')
+
+api.start(appHost, appPort);
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -24,7 +27,9 @@ function createWindow () {
   mainWindow.loadFile('../../client/common/index.html')
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  if (devTool) {
+    mainWindow.webContents.openDevTools()
+  }
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {

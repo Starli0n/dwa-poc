@@ -1,11 +1,14 @@
 console.log('Loading database...');
 
+const {dbHost, dbPort, dbUsr, dbPwd, dbName} = require('../common/config');
+
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'example',
-  database : 'poc'
+  host     : dbHost,
+  port     : dbPort,
+  user     : dbUsr,
+  password : dbPwd,
+  database : dbName
 });
 
 connection.connect();
