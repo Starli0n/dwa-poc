@@ -15,6 +15,14 @@ env_var: # Print environnement variables
 env: # Create .env and tweak it before initialize
 	cp .env.default .env
 
+.PHONY: install
+install:
+	mkdir -p client/{common,desktop,web}
+	mkdir -p server/{common,desktop,web}
+	mkdir -p database
+	cd server/web && npm install
+	cd server/desktop && npm install
+
 .PHONY: initialize
 initialize: init
 
@@ -33,8 +41,9 @@ init-shell-desktop: # Open a shell on a fresh container
 
 .PHONY: erase
 erase:
-	rm -rf web/node_modules web/package-lock.json
-	rm -rf desktop/node_modules desktop/package-lock.json
+	rm -rf server/web/node_modules
+	rm -rf server/node_modules
+	rm -rf database
 
 .PHONY: pull
 pull: # Pull the docker image
