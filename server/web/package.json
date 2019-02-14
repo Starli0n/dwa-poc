@@ -11,7 +11,5 @@
     "dependencies": {
         "mysql": "^2.16.0"
     },
-    "devDependencies": {
-        "dotenv": "^6.2.0"
-    }
+    "devDependencies": {}
 }

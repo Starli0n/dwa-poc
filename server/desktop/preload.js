@@ -1,4 +1,5 @@
-const {serverUrl} = require('../common/config');
+const config = require('./config');
 const {remote} = require('electron');
+const { app: { url } } = config;
 
-window.serverURL = serverUrl;
+window.serverURL = url;

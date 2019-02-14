@@ -1,12 +1,13 @@
 console.log('Loading desktop...');
 
 // Modules to control application life and create native browser window
-const {devTool, appHost, appPort} = require('../common/config');
+const config = require('./config');
 const {app, BrowserWindow} = require('electron')
 const api = require('../common/api');
 const path = require('path')
+const { app: { devTool, host, port, width, height } } = config;
 
-api.start(appHost, appPort);
+api.start(host, port);
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -16,8 +17,8 @@ function createWindow () {
   // Create the browser window.
   //mainWindow = new BrowserWindow({width: 800, height: 600})
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 800,
+    width: width,
+    height: height,
     webPreferences: {
       preload: path.resolve(__dirname, 'preload.js')
     }

@@ -14,8 +14,8 @@ env_var: # Print environnement variables
 .PHONY: env
 env: # Create .env and tweak it before initialize
 	cp .env.default .env
-	cp server/web/.env.default server/web/.env
-	cp server/desktop/.env.default server/desktop/.env
+	cp server/web/config.default.js server/web/config.js
+	cp server/desktop/config.default.js server/desktop/config.js
 
 .PHONY: install
 install:
@@ -105,11 +105,11 @@ shell-desktop: # Open a shell on a started container
 
 .PHONY: web
 web:
-	cd server/web && npm run start-local
+	cd server/web && npm run start
 
 .PHONY: desktop
 desktop:
-	cd server/desktop && npm run start-local
+	cd server/desktop && npm run start
 
 .PHONY: db-up
 db-up: # Start containers and services

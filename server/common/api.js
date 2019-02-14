@@ -3,7 +3,7 @@ console.log('Loading api...');
 const express = require('express');
 const app = express();
 
-function start(appHost, appPort) {
+function start(host, port) {
   // Public
   app.use(express.static('../../client/common'));
 
@@ -19,8 +19,8 @@ function start(appHost, appPort) {
     res.send({result: sum});
   });
 
-  app.listen(appPort, appHost);
-  console.log(`Running on http://${appHost}:${appPort}`);
+  app.listen(port, host);
+  console.log(`Running on http://${host}:${port}`);
 };
 
 module.exports.start = start;
