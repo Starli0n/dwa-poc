@@ -3,7 +3,7 @@ console.log('Loading desktop...');
 // Modules to control application life and create native browser window
 const config = require('./config');
 const {app, BrowserWindow} = require('electron')
-const api = require('../common/api');
+const api = require('../common/route');
 const path = require('path')
 const { app: { devTool, host, port, width, height } } = config;
 

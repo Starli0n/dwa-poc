@@ -1,6 +1,7 @@
-console.log('Loading api...');
+console.log('Loading route...');
 
 const express = require('express');
+const logic = require('./logic');
 const app = express();
 
 function start(host, port) {
@@ -9,13 +10,14 @@ function start(host, port) {
 
   // Api
   app.get('/api', (req, res) => {
-    res.json({message: 'Hello World from the api'});
+    message = logic.hello();
+    res.json({message: message});
   });
 
   app.get('/api/sum/:numberA/:numberB', function (req, res) {
-    var numberA = parseInt(req.params.numberA);
-    var numberB = parseInt(req.params.numberB);
-    var sum = numberA + numberB;
+    let numberA = parseInt(req.params.numberA);
+    let numberB = parseInt(req.params.numberB);
+    let sum = logic.sum(numberA, numberB);
     res.send({result: sum});
   });
 
