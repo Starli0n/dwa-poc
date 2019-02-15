@@ -15,6 +15,13 @@
       <div>Sum: <input type="text" id="sumAB"></div>
     <div>
 
+    <br/ >
+
+    <div>
+      <div><button id="iDatabase" onclick="database()">Request</button></div>
+      <div>Database: <input type="text" id="iDbResult"></div>
+    <div>
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
 
@@ -22,8 +29,7 @@
       if (window.serverURL)
         serverURL = window.serverURL;
 
-      function sum()
-      {
+      function sum() {
         let numberA = document.getElementById("numberA").value;
         let numberB = document.getElementById("numberB").value;
 
@@ -32,6 +38,22 @@
             // handle success
             console.log(response);
             document.getElementById("sumAB").value = response.data.result;
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          })
+          .then(function () {
+            // always executed
+          });
+      }
+
+      function database() {
+        axios.get(serverURL + '/api/database')
+          .then(function (response) {
+            // handle success
+            console.log(response);
+            document.getElementById("iDbResult").value = response.data.message;
           })
           .catch(function (error) {
             // handle error

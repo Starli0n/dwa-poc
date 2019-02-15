@@ -21,6 +21,11 @@ function start(host, port) {
     res.send({result: sum});
   });
 
+  app.get('/api/database', function (req, res) {
+    message = logic.hello();
+    res.json({message: message});
+  });
+
   app.listen(port, host);
   console.log(`Running on http://${host}:${port}`);
 };
