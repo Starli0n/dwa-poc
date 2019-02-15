@@ -4,6 +4,8 @@ const express = require('express');
 const logic = require('./logic');
 const app = express();
 
+module.exports.start = start;
+
 function start(host, port) {
   // Public
   app.use(express.static('../../client/common'));
@@ -24,10 +26,9 @@ function start(host, port) {
   app.get('/api/database', function (req, res) {
     message = logic.hello();
     res.json({message: message});
+    logic.testDatase();
   });
 
   app.listen(port, host);
   console.log(`Running on http://${host}:${port}`);
 };
-
-module.exports.start = start;

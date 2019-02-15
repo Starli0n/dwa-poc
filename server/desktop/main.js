@@ -1,13 +1,16 @@
 console.log('Loading desktop...');
 
 // Modules to control application life and create native browser window
-const config = require('./config');
-const {app, BrowserWindow} = require('electron')
-const api = require('../common/route');
+const { app: { devTool, host, port, width, height } } = require('./config');
 const path = require('path')
-const { app: { devTool, host, port, width, height } } = config;
+const {app, BrowserWindow} = require('electron')
 
-api.start(host, port);
+const db = require('../common/database');
+const dbImpl = require('./database');
+db.set(dbImpl);
+
+const route = require('../common/route');
+route.start(host, port);
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.

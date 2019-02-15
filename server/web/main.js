@@ -1,9 +1,10 @@
 console.log('Loading web...');
 
-const config = require('./config');
-const api = require('../common/route');
-const { app: { host, port } } = config;
+const { app: { host, port } } = require('./config');
 
-api.start(host, port);
+const db = require('../common/database');
+const dbImpl = require('./database');
+db.set(dbImpl);
 
-const database = require('./database')
+const route = require('../common/route');
+route.start(host, port);

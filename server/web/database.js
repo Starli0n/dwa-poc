@@ -1,11 +1,10 @@
-console.log('Loading database...');
+console.log('Loading web/database...');
 
-const config = require('./config');
+const { db: { host, port, usr, pwd, name } } = require('./config');
 const db = require('../common/database');
-const { db: { host, port, usr, pwd, name } } = config;
 
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
+const mysql      = require('mysql');
+const connection = mysql.createConnection({
   host     : host,
   port     : port,
   user     : usr,
@@ -13,4 +12,4 @@ var connection = mysql.createConnection({
   database : name
 });
 
-db.test(connection);
+module.exports = connection;

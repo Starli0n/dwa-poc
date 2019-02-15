@@ -1,9 +1,9 @@
-console.log('Loading database...');
+console.log('Loading server/database...');
 
 const config = require('./config');
-let sqlite3 = require('sqlite3').verbose();
 const db = require('../common/database');
-let connection = new sqlite3.Database(config.db.path);
+const sqlite3 = require('sqlite3').verbose();
+const connection = new sqlite3.Database(config.db.path);
 
 connection.connect = function () {};
 
@@ -17,4 +17,4 @@ connection.end = function () {
   connection.close();
 };
 
-db.test(connection);
+module.exports = connection;
