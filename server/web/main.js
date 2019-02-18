@@ -6,5 +6,5 @@ const db = require('../common/database');
 const dbImpl = require('./database');
 db.set(dbImpl);
 
-const route = require('../common/route');
-route.start(host, port);
+const server = require('../common/server');
+server.start(host, port);

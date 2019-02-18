@@ -1,16 +1,10 @@
-console.log('Loading route...');
+console.log('Loading restApi...');
 
-const express = require('express');
 const logic = require('./logic');
-const app = express();
 
-module.exports.start = start;
+module.exports.addRoute = addRoute;
 
-function start(host, port) {
-  // Public
-  app.use(express.static('../../client/common'));
-
-  // Api
+function addRoute(app) {
   app.get('/api', (req, res) => {
     message = logic.hello();
     res.json({message: message});
@@ -28,7 +22,4 @@ function start(host, port) {
     res.json({message: message});
     logic.testDatase();
   });
-
-  app.listen(port, host);
-  console.log(`Running on http://${host}:${port}`);
 };

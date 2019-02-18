@@ -1,7 +1,6 @@
 console.log('Loading server/database...');
 
 const config = require('./config');
-const db = require('../common/database');
 const sqlite3 = require('sqlite3').verbose();
 const connection = new sqlite3.Database(config.db.path);
 
