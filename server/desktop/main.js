@@ -6,7 +6,7 @@ const path = require('path')
 const {app, BrowserWindow} = require('electron')
 
 const db = require('../common/database');
-const dbImpl = require('./database');
+const dbImpl = require('./databaseSqlite');
 db.set(dbImpl);
 
 const server = require('../common/server');
